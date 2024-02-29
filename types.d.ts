@@ -1,9 +1,17 @@
 interface BoredTypes {
   activity?: string;
   type?: string;
-  participants?: number;
-  price?: number;
+  participants?: string;
+  price?: string;
   link?: string;
   key?: string;
-  accessibility?: number;
+  accessibility?: string;
+}
+
+interface FormModalProps {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  buttonTitle?: String;
+  modalTitle?: String;
+  children: React.ReactNode,
 }
