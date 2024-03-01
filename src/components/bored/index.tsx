@@ -167,7 +167,9 @@ export default function Bored() {
           </FormModal>
         </div>
 
-        {boredData ? <Whitebored key={boredData.key} BoredData={boredData} /> : null}
+        {boredData ? (
+          <Whitebored key={boredData.key} BoredData={boredData} />
+        ) : null}
       </section>
     </TransitionMoveUp>
   );
