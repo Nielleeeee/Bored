@@ -7,6 +7,8 @@ import FormModal from "../modal/formModal";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { TransitionMoveUp } from "@/components/animation/transition";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Bored() {
   const [boredData, setBoredData] = useState<BoredTypes | null>(null);
@@ -20,11 +22,10 @@ export default function Bored() {
     if (response.error) {
       setBoredData(null);
       setIsFetching(false);
+    } else {
+      setBoredData(response);
+      setIsFetching(false);
     }
-
-    setBoredData(response);
-    console.log(boredData);
-    setIsFetching(false);
   };
 
   const formik = useFormik({
@@ -41,11 +42,21 @@ export default function Bored() {
       try {
         const specificBored = await getBoredSpecifc(values);
 
-        setBoredData(specificBored);
+        if (specificBored.error) {
+          toast.error(`${specificBored.error}`);
 
-        setIsOpenModal(false);
+          setBoredData(null);
 
-        resetForm();
+          setIsOpenModal(false);
+
+          resetForm();
+        } else {
+          setBoredData(specificBored);
+
+          setIsOpenModal(false);
+
+          resetForm();
+        }
       } catch (error) {
         console.error("An error occurred:", error);
       }
@@ -54,6 +65,8 @@ export default function Bored() {
 
   return (
     <TransitionMoveUp>
+      <ToastContainer />
+
       <section className="flex flex-col justify-center items-center w-full gap-10">
         <div className="flex gap-4">
           <button
