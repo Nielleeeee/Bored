@@ -43,7 +43,7 @@ export default function Bored() {
         const specificBored = await getBoredSpecifc(values);
 
         if (specificBored.error) {
-          toast.error(`${specificBored.error}`);
+          toast.error(`No activity found :(`);
 
           setBoredData(null);
 
