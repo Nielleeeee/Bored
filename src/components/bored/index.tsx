@@ -8,6 +8,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { TransitionMoveUp } from "@/components/animation/transition";
 import { toast, ToastContainer } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Bored() {
@@ -37,6 +38,9 @@ export default function Bored() {
     },
     validationSchema: Yup.object({
       type: Yup.string().required("Activity type is required"),
+      participants: Yup.string().required(),
+      price: Yup.string().required(),
+      accessibility: Yup.string().required(),
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
@@ -122,49 +126,75 @@ export default function Bored() {
                 </select>
               </div>
 
-              <div>
-                <label className="sr-only" htmlFor="participants">
-                  Participants
-                </label>
-                <input
-                  className="w-full rounded-lg border-gray-400 border p-3 text-sm"
-                  placeholder="Participants"
-                  type="number"
-                  id="participants"
-                  name="participants"
-                  onChange={formik.handleChange}
-                  value={formik.values.participants}
-                />
+              <div className="flex flex-col gap-1">
+                <label className="text-sm">Participants (1 - 10)</label>
+
+                <div className="flex flex-row gap-2 items-center">
+                  <input
+                    className={`w-full rounded-lg p-3 text-sm ${
+                      formik.touched.participants && formik.errors.participants
+                        ? "border-red-400 border-2"
+                        : "border-gray-400 border"
+                    }`}
+                    placeholder="Min"
+                    type="number"
+                    id="participants"
+                    name="participants"
+                    onChange={formik.handleChange}
+                    value={formik.values.participants}
+                  />
+                </div>
               </div>
 
-              <div>
-                <label className="sr-only" htmlFor="price">
-                  Price
-                </label>
-                <input
-                  className="w-full rounded-lg border-gray-400 border p-3 text-sm"
-                  placeholder="Price"
-                  type="number"
-                  id="price"
-                  name="price"
-                  onChange={formik.handleChange}
-                  value={formik.values.price}
-                />
+              <div className="flex flex-col gap-1">
+                <label className="text-sm">Price</label>
+
+                <div className="flex flex-row gap-2 items-center">
+                  <select
+                    className={`w-full rounded-lg p-3 text-sm ${
+                      formik.touched.price &&
+                      formik.errors.price
+                        ? "border-red-400 border-2"
+                        : "border-gray-400 border"
+                    }`}
+                    id="accessibility"
+                    name="price"
+                    onChange={formik.handleChange}
+                    value={formik.values.price}
+                  >
+                    <option value="" defaultChecked disabled>
+                      Cost
+                    </option>
+                    <option value="0">Free</option>
+                    <option value="1">Not Free</option>
+                  </select>
+                </div>
               </div>
 
-              <div>
-                <label className="sr-only" htmlFor="accessibility">
-                  Accessibility
-                </label>
-                <input
-                  className="w-full rounded-lg border-gray-400 border p-3 text-sm"
-                  placeholder="Accessibility"
-                  type="number"
-                  id="accessibility"
-                  name="accessibility"
-                  onChange={formik.handleChange}
-                  value={formik.values.accessibility}
-                />
+              <div className="flex flex-col gap-1">
+                <label className="text-sm">Accessibility</label>
+
+                <div className="flex flex-row gap-2 items-center">
+                  <select
+                    className={`w-full rounded-lg p-3 text-sm ${
+                      formik.touched.accessibility &&
+                      formik.errors.accessibility
+                        ? "border-red-400 border-2"
+                        : "border-gray-400 border"
+                    }`}
+                    id="accessibility"
+                    name="accessibility"
+                    onChange={formik.handleChange}
+                    value={formik.values.accessibility}
+                  >
+                    <option value="" defaultChecked disabled>
+                      Choose Difficulty
+                    </option>
+                    <option value="1">Easy</option>
+                    <option value="2">Moderate</option>
+                    <option value="3">Hard</option>
+                  </select>
+                </div>
               </div>
 
               <div>
