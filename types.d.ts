@@ -3,9 +3,16 @@ interface BoredTypes {
   type?: string;
   participants?: string;
   price?: string;
+  accessibility?: string;
   link?: string;
   key?: string;
-  accessibility?: string;
+}
+
+interface BoredTypesProps {
+  type: string;
+  participants: string;
+  price: string;
+  accessibility: string;
 }
 
 interface FormModalProps {
@@ -13,5 +20,14 @@ interface FormModalProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   buttonTitle?: String;
   modalTitle?: String;
-  children: React.ReactNode,
+  children: React.ReactNode;
+}
+
+interface SliderProps {
+  name: string;
+  value: number;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  max?: number;
+  min?: number;
+  step?: number;
 }
