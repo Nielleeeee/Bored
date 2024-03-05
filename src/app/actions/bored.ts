@@ -34,8 +34,13 @@ export const getBoredSpecifc = async ({
   if (participants) url += `&participants=${participants}`;
 
   if (price) {
-    let [minPrice, maxPrice] = mapAccessibilityToValue(price);
-    url += `&minprice=${minPrice}&maxprice=${maxPrice}`;
+    if (price === "0") {
+      url += `&price=0`;
+    } else {
+      const minPrice = 0.1;
+      const maxPrice = 1;
+      url += `&minprice=${minPrice}&maxprice=${maxPrice}`;
+    }
   }
 
   if (accessibility) {
@@ -43,6 +48,8 @@ export const getBoredSpecifc = async ({
       mapAccessibilityToValue(accessibility);
     url += `&minaccessibility=${minAccessibility}&maxaccessibility=${maxAccessibility}`;
   }
+
+  console.log(url);
 
   const response = await fetch(url);
   const data = await response.json();

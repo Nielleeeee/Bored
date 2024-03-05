@@ -92,8 +92,8 @@ export default function Bored() {
               className="flex flex-col gap-4"
             >
               <div>
-                <label className="sr-only" htmlFor="type">
-                  Type
+                <label className="text-sm" htmlFor="type">
+                  Activty Type
                 </label>
                 <select
                   name="type"
@@ -112,7 +112,7 @@ export default function Bored() {
                     disabled
                     className="text-gray-400"
                   >
-                    Activity Type
+                    Choose Activity Type
                   </option>
                   <option value="education">Education</option>
                   <option value="recreational">Recreational</option>
@@ -127,7 +127,7 @@ export default function Bored() {
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="text-sm">Participants (1 - 10)</label>
+                <label className="text-sm">Participants</label>
 
                 <div className="flex flex-row gap-2 items-center">
                   <input
@@ -136,7 +136,7 @@ export default function Bored() {
                         ? "border-red-400 border-2"
                         : "border-gray-400 border"
                     }`}
-                    placeholder="Min"
+                    placeholder="Participants"
                     type="number"
                     id="participants"
                     name="participants"
@@ -152,8 +152,7 @@ export default function Bored() {
                 <div className="flex flex-row gap-2 items-center">
                   <select
                     className={`w-full rounded-lg p-3 text-sm ${
-                      formik.touched.price &&
-                      formik.errors.price
+                      formik.touched.price && formik.errors.price
                         ? "border-red-400 border-2"
                         : "border-gray-400 border"
                     }`}
@@ -163,7 +162,7 @@ export default function Bored() {
                     value={formik.values.price}
                   >
                     <option value="" defaultChecked disabled>
-                      Cost
+                      Free or Not Free?
                     </option>
                     <option value="0">Free</option>
                     <option value="1">Not Free</option>
