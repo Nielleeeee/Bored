@@ -1,17 +1,10 @@
 "use server";
 
-const mapAccessibilityToValue = (level: string) => {
-  switch (level) {
-    case "1":
-      return [0, 0.33];
-    case "2":
-      return [0.33, 0.66];
-    case "3":
-      return [0.66, 1];
-    default:
-      return [0, 1];
-  }
-};
+import {
+  mapAccessibilityToValue,
+  getPriceDescription,
+  getAccessibilityDescription,
+} from "@/lib/functions";
 
 export const getBored = async () => {
   const response = await fetch("https://www.boredapi.com/api/activity/");
@@ -49,10 +42,11 @@ export const getBoredSpecifc = async ({
     url += `&minaccessibility=${minAccessibility}&maxaccessibility=${maxAccessibility}`;
   }
 
-  console.log(url);
-
   const response = await fetch(url);
   const data = await response.json();
+
+  data.price = getPriceDescription(data.price);
+  data.accessibility = getAccessibilityDescription(data.accessibility);
 
   return data;
 };
