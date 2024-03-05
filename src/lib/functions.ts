@@ -25,11 +25,11 @@ export const getPriceDescription = (price: number) => {
 
 // Helper function to convert accessibility value to description
 export const getAccessibilityDescription = (accessibility: number) => {
-  if (0 < accessibility && accessibility < 0.33) {
+  if (0 <= accessibility && accessibility <= 0.33) {
     return "Piece of a cake 🍰";
-  } else if (0.34 < accessibility && accessibility < 0.66) {
+  } else if (0.34 <= accessibility && accessibility <= 0.66) {
     return "A challenge worth savoring! 🧩";
-  } else if (0.67 < accessibility && accessibility < 1) {
+  } else if (0.67 <= accessibility && accessibility <= 1) {
     return "A real brain teaser! 🤯";
   }
 };
